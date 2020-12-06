@@ -10,26 +10,26 @@ function changeCSS(cssFile, cssLinkIndex) {
 }
 
 window.onload = function () {
+    setCheckboxVisibility('hidden');
     $("section").hide();
     $("footer").hide();
     $("section:first").show();
 };
 
-
-$(".show").click(function () {
-    if ($(".ch").is($(".ch").css("visibility", "visible"))) {
-        $(".ch").css("visibility", "hidden");
-        $(".ch2").css("visibility", "hidden");
-        $(".ch3").css("visibility", "hidden");
+function setCheckboxVisibility(visibility) {
+    const groups = document.getElementsByClassName("checkbox-group");
+    for (let i = 0; i < groups.length; i++) {
+        groups[i].style.visibility = visibility;
     }
-});
+}
 
-$(".hide").click(function () {
-    $(".ch").css("visibility", "visible");
-    $(".ch2").css("visibility", "visible");
-    $(".ch3").css("visibility", "visible");
+function show_checkboxes_click() {
+    setCheckboxVisibility('visible');
+};
 
-});
+function hide_checkboxes_click() {
+    setCheckboxVisibility('hidden');
+}
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 $(".ch input:checkbox").click(function () {

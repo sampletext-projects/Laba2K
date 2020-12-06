@@ -12,10 +12,13 @@
 <body>
     <div class="wrapper">
         <section class="sec1">
-            <a href="#" onclick="changeCSS('style2.css', 0);">STYLE 2 </a>
+            <a href="#" onclick="changeCSS('style2.css', 0);">STYLE 2</a>
             <div class="buttons">
-                <button class="show">Скрыть</button>
-                <div class="ch">
+                <div class="checkbox-control-btn-group">
+                    <button class="checkbox-control-btn" onclick="show_checkboxes_click()">Показать</button>
+                    <button class="checkbox-control-btn" onclick="hide_checkboxes_click()">Скрыть</button>
+                </div>
+                <div class="checkbox-group">
                     <label><input type="checkbox" name="block" value="block1"> Первый блок</label>
                     <label><input type="checkbox" name="block" value="block2"> Второй блок</label>
                     <label><input type="checkbox" name="block" value="block3"> Третий блок</label>
@@ -24,17 +27,16 @@
                     <label><input type="checkbox" name="block" value="block6"> Шестой блок</label>
                     <label><input type="checkbox" name="block" value="block7"> Седьмой блок</label>
                 </div>
-                <div class="ch2">
+                <div class="checkbox-group">
                     <label><input type="checkbox" id="check8" name="headerss" value="desigN"> New Design</label>
                     <label><input type="checkbox" id="check9" name="headerss" value="futurE"> New Future</label>
                     <label><input type="checkbox" id="check10" name="headerss" value="without"> Without Header</label>
                 </div>
-                <div class="ch3">
+                <div class="checkbox-group">
                     <label><input type="checkbox" id="check11" name="param" value="param1"> Contains DataEnter</label>
                     <label><input type="checkbox" id="check12" name="param" value="param2"> Contains Laptop</label>
                     <label><input type="checkbox" id="check13" name="param" value="param3"> Contains RedTriangle</label>
                 </div>
-                <button class="hide">Показать</button>
             </div>
             <div class="t1">There is no other <br> platforms for you as like</div>
             <div class="i1">
@@ -44,7 +46,6 @@
                 Try now
             </div>
             <div class="t2">* No need to add cards details</div>
-
         </section>
         <section class="sec2">
             <div class="description">
