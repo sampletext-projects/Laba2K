@@ -1,0 +1,12 @@
+/*****************************
+ All rights reserved.
+ AllFont.ru (c) 2011-2015
+ *****************************/
+@font-face {
+    font-family: 'Exo Thin';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Exo Thin'), local('Exo-Thin'),
+        url('exo-thin_041e1bd23a99f72965b22c40d34bbd79.woff') format('woff'),
+        url('exo-thin_041e1bd23a99f72965b22c40d34bbd79.ttf') format('truetype');
+}
