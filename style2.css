@@ -1,0 +1,637 @@
+body
+{
+	font-family: 'Exo Thin', arial;
+	font-size: 16px;	
+}
+
+.sec1
+{	
+	width: 100%	;
+
+
+}
+
+img
+{
+	display:none;
+}
+
+input
+{
+	display: none;
+}
+
+label
+{
+	display: none;
+}
+
+button
+{
+	display: none;
+}
+	
+
+.t1
+{
+		/* Style for "There is n" */
+
+	width: 708px;
+	height: 138px;
+	font-size: 48px;
+	font-weight: 400;
+	line-height: 75px;
+	/* Text style for "T, here is" */
+	letter-spacing: 2.4px;
+
+	text-align: center;
+	margin: 0 auto;
+}
+
+.i1
+{
+	padding-top: 43px;
+	padding-bottom: 39px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.rect
+{
+
+	width: 190px;
+	height: 50px;
+	text-align: center;
+	margin: 0 auto; 
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 54px;
+	text-transform: uppercase;
+	/* Text style for "Try now" */
+	letter-spacing: 3.2px;
+	
+
+}
+
+.t2
+{
+	margin: 0 auto;
+	text-align: center;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 38px;
+	/* Text style for "*,  No nee" */
+	letter-spacing: 0.56px;
+}
+
+
+.sec2
+{
+	margin-top: 50px;
+	width: 100%;
+
+}
+.description
+{
+
+	margin: 0 auto;
+}
+.rectan
+{
+	
+}
+
+
+.redTriangle
+{
+	display: none;
+}
+
+.newDesign
+{
+	text-align: center;
+	font-size: 16px;
+	font-weight: bold;
+	line-height: 7px;
+	text-transform: uppercase;
+	/* Text style for "N, EW DESI" */
+	letter-spacing: 3.2px;
+}
+.thereIs
+{
+
+	/* Style for "There is n" */
+	font-size: 40px;
+	font-weight: bold;
+	line-height: 50px;
+	/* Text style for "T, here is" */
+	letter-spacing: 1.6px;
+	/* Text style for "...." */
+	text-align: center;
+	margin-top: 50px;
+}
+
+.mainText
+{
+	/* Style for "Aenean eu" */
+	margin-top: 50px;
+	text-align: center;
+	font-size: 16px;
+	font-weight: 500;
+	line-height: 26px;
+	/* Text style for "Aenean eu" */
+	letter-spacing: 0.64px;
+}
+
+.reddot
+{
+
+}
+
+
+.sec3
+{
+	width: 100%;
+
+}
+
+.rectangle
+{
+	width: 100%;
+	margin-top: 50px;
+	text-align: center;
+}
+
+.contain
+{
+	display: flex;
+	width: 100%;
+	position: relative;
+}
+
+.pen
+{	
+	left: 97px;	
+	position: absolute; 
+}
+
+.tex
+{
+	text-align: center;
+	margin: 0 auto;
+}
+
+.newFuture
+{
+	/* Style for "NEW FEATUR" */
+	margin: 0 auto;
+	font-size: 16px;
+	line-height: 49.97px;
+	text-transform: uppercase;
+	/* Text style for "N, EW FEAT" */
+	letter-spacing: 3.2px;
+	text-align: center;
+}
+
+.someAwesome
+{
+	/* Style for "Some aweso" */
+	margin: 0 auto;
+	font-size: 40px;
+	font-weight: bold;
+	line-height: 49.97px;
+	/* Text style for "S, ome awe" */
+	letter-spacing: 1.6px;
+	
+}
+
+.earphone
+{
+	position: absolute;
+	right: 160px;
+}
+
+.features
+{
+	display: flex;
+	width: 100%;
+
+}
+
+.features > div {
+	text-align: center;
+}
+
+.cadr
+{
+	width: 65px;
+	height: 65px;
+}
+
+.temp
+{
+
+	color: #282828;
+	font-size: 22px;
+	font-weight: 800;
+	line-height: 49.97px;
+	/* Text style for "S, ome awe" */
+	letter-spacing: 0.88px;
+	margin-bottom: 0px;
+}
+
+.Ttemp
+{
+	margin-top: 0px;
+	opacity: 0.66;
+	color: #282828;
+	font-size: 15px;
+	font-weight: 600;
+	line-height: 26px;
+	/* Text style for "Donec sed" */
+	letter-spacing: 0.64px;
+	text-align: center;
+	
+	
+	
+}
+.cup
+{
+	/* выравнивает элемент по правому краю, все остальные элементы обтекаеют его по левой стороне */
+	float: right;
+}
+
+.sec4 
+{
+	display: flow-root; 
+
+	/* управляет отображением содержания блочного элемента, если оно выходит за область размеров */
+	overflow: hidden;
+	
+	position: relative;
+}
+
+
+
+.sec4 .content 
+{
+	margin-top: 50px;
+	width: 100%;
+	text-align: center;
+}
+
+.t
+{
+	margin: 0 auto;
+	text-align: center;
+	font-size: 16px;
+	font-weight: 500;
+	line-height: 26px;
+/* Text style for "Aenean eu" */
+	letter-spacing: 0.64px;
+
+}
+
+.heade
+{
+	margin: 0 auto;
+	font-size: 20px;
+	font-weight: bold;
+	line-height: 50px;
+	/* Text style for "R, esposiv" */
+	letter-spacing: 1.6px;
+	padding-bottom: 36px;
+/* Text style for "...." */
+}
+.sec4 .image_block {
+	width: 100%;
+}
+
+.newDesign1
+{
+	margin: 0 auto;
+	font-size: 16px;
+	font-weight: 800;
+	line-height: 49.97px;
+	text-transform: uppercase;
+	/* Text style for "N, EW FEAT" */
+	letter-spacing: 3.2px;
+}
+
+.in
+{
+	padding: 0px 0px 0px 70px;
+}
+
+.inn
+{
+	padding: 0px 0px 0px 54px;
+}
+
+.image
+{
+	max-width: 100%
+}
+
+/* Section 5*/
+
+.sec5
+{
+	width: 100%;
+	margin-top: 50px;
+}
+
+.rect26
+{
+	width: 100%;
+	/* Масштабирует изображение с сохранением пропорций так, чтобы его ширина или высота равнялась ширине или высоте блока. */
+	background-size: cover;
+
+}
+
+.clients
+{
+	
+	display: flex;
+	
+}
+
+.clients > div {
+	text-align: center;
+}
+
+.Jonathon
+{
+	font-size: 22px;
+	font-weight: bold;
+	line-height: 49.97px;
+	/* Text style for "J, onathon" */
+	letter-spacing: 0.88px;
+}
+
+.Co
+{
+	font-size: 16px;
+	font-weight: bold;
+	line-height: 49.97px;
+
+}
+
+.jt
+{
+	opacity: 0.66;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 26px;
+	/* Text style for "“Aenean eu" */
+	letter-spacing: 0.64px;
+}
+
+.r28
+{
+	width: 76px;
+	height: 76px;
+	border: 2px solid #1d1e24;
+	background-color: #4e4e5e;
+	
+}
+
+.logos
+{
+	display: flex;
+	justify-content: center;
+	margin: 0 auto;
+}
+
+.logos img {
+	margin: 0 30px;
+}
+
+
+/* Section 6*/
+
+.sec6 
+{
+	width: 100%;
+
+}
+.sec6 .newFuture
+{
+
+}
+.sec6 .tex
+{
+	text-align: center;
+	margin: 0 auto;
+	width: auto;
+}
+
+.browser
+{
+	width: 647px;
+	height: 70px;
+	margin: 68px auto 0;
+}
+
+.sec6 .t
+{
+	margin: 0 auto;
+	font-size: 16px;
+	font-weight: 500;
+	line-height: 26px;
+/* Text style for "Aenean eu" */
+	letter-spacing: 0.64px;
+	text-align: center;
+	
+
+}
+
+.pos1
+{
+	width: 820px;
+	margin: 93px auto 0;
+}
+
+
+/* Section 7*/
+
+.sec7
+{
+	width: 100%;
+
+	position: relative;
+}
+
+.Title
+{
+	margin: 0 auto;
+	text-align:center;
+}
+
+.NewF
+{
+	font-size: 16px;
+	font-weight: bold;
+	line-height: 49.97px;
+	text-transform: uppercase;
+	/* Text style for "N, EW FEAT" */
+	letter-spacing: 3.2px;
+}
+
+.Over1000
+{
+
+	font-size: 40px;
+	font-weight: bold;
+	line-height: 49.97px;
+	letter-spacing: 1.6px;
+}
+
+.trash
+{
+	position: relative;
+
+}
+
+.arrow
+{
+	position: relative;
+	left: -30px;
+	top: 60px;
+}
+
+.days
+{
+	text-align: center;
+	margin: 0 auto;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+
+.form 
+{
+	display: flex;
+	margin: 0 auto;
+}
+
+.input 
+{
+	display: none;
+
+	width: 100%;
+	font-size: 16px;
+	font-weight: 400;
+	text-transform: uppercase;
+	padding: 18px 30px;
+	margin: 0 15px;
+}
+
+.button {
+	display: none;
+	width: 100%;
+	font-size: 16px;
+	font-weight: 400;
+	text-transform: uppercase;
+	padding: 20px 32px;	
+	margin: 0 15px;
+}
+
+.terms {
+
+	font-size: 14px;
+	text-align: center;
+	font-weight: bold;
+	line-height: 75px;
+}
+
+
+
+
+.footer 
+{
+	position: relative;
+	display: flex;
+	overflow: hidden;
+}
+
+
+
+
+.footer-col h5
+ {
+	 margin: 0px;
+	color: #282828;
+	font-size: 22px;
+	font-weight: bold;
+	
+}
+
+.footer-col:first-child {width: 250px;}
+
+.footer-col 
+{
+	padding: 0px 20px 0px 20px;
+	letter-spacing: 0.64px;
+	line-height: 26px;
+	text-align: center;
+	margin: 0 auto;
+}
+
+.footer-col > p
+{
+	margin: 0px;
+}
+
+/* задает стилевое оформление для первого и последнего элемента своего родителя */
+.footer-col:last-child { margin-right: 0; }
+.footer-col:first-child { margin-left: 0; }
+
+.footer-col div 
+{
+	font-size: 14px;
+
+}
+
+.footer-logo {
+	padding-top: 40px;
+}
+
+
+.subscribe-inp {
+	
+	display: none;
+	position: relative;
+	margin-bottom: 30px !important;
+}
+
+.subscribe-inp input{
+	border-radius: 3px;
+	border: 1px solid #4e4e5e;
+	background-color: #eee;
+	color: #555;
+	font-size: 16px;
+	font-weight: bold;
+	padding: 17px 30px;
+	text-transform: uppercase;
+	
+}
+
+.subscribe-inp input::placeholder {
+	color: #555;
+}
+
+.subscribe-inp button {
+	cursor: pointer;
+	display: inline-block;
+	position: absolute;
+	right: 0;
+	padding: 13px 15px;
+	box-shadow: 0 3px 3px rgba(14, 15, 15, 0.25);
+	border-radius: 3px;
+	border: 1px solid #ff6d6d;
+	background-color: #ff6d6d;
+	margin-left: 50px;
+}
+
+
