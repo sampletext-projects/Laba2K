@@ -9,13 +9,68 @@ function changeCSS(cssFile, cssLinkIndex) {
     document.getElementsByTagName("head").item(0).replaceChild(newLink, oldLink);
 }
 
-var withNewDesign = [1, 3];
-var withNewFuture = [2, 5, 6];
-var withNoHeader = [4, 7];
+var sectionsData = [
+    {
+        dom_id: 'sec1',
+        dom_element: undefined,
+        feature_flags: [false, false, false],
+        content_flags: [false, false, false]
+    },
+    {
+        dom_id: 'sec2',
+        dom_element: undefined,
+        feature_flags: [true, false, false],
+        content_flags: [false, false, true]
+    },
+    {
+        dom_id: 'sec3',
+        dom_element: undefined,
+        feature_flags: [false, true, false],
+        content_flags: [false, false, false]
+    },
+    {
+        dom_id: 'sec4',
+        dom_element: undefined,
+        feature_flags: [true, false, false],
+        content_flags: [false, true, true]
+    },
+    {
+        dom_id: 'sec5',
+        dom_element: undefined,
+        feature_flags: [false, false, true],
+        content_flags: [false, false, false]
+    },
+    {
+        dom_id: 'sec6',
+        dom_element: undefined,
+        feature_flags: [false, true, false],
+        content_flags: [false, true, false]
+    },
+    {
+        dom_id: 'sec7',
+        dom_element: undefined,
+        feature_flags: [false, true, false],
+        content_flags: [true, false, false]
+    },
+    {
+        dom_id: 'footer',
+        dom_element: undefined,
+        feature_flags: [false, false, true],
+        content_flags: [true, false, true]
+    }
+];
+
+function load_sections_dom() {
+    for (var i = 0; i < sectionsData.length; i++) {
+        sectionsData[i].dom_element = document.getElementById(sectionsData[i].dom_id);
+    }
+}
 
 window.onload = function () {
     setCheckboxVisibility('hidden');
+    load_sections_dom();
     handle_checkbox_change();
+    get_all_sections();
 };
 
 function setCheckboxVisibility(visibility) {
@@ -34,102 +89,65 @@ function hide_checkboxes_click() {
 }
 
 function extract_checkboxes(labels) {
-    let checkboxes = [];
+    const checkboxes = [];
     for (let i = 0; i < labels.length; i++) {
         checkboxes.push(labels[i].children[0]);
     }
     return checkboxes;
 }
 
-function disable_all() {
-    let checkboxes = get_checkbox_group(1);
-    for (let i = 1; i < checkboxes.length; i++) {
-        checkboxes[i].disabled = true;
-    }
-}
-
-function enable_new_design() {
-    let checkboxes = get_checkbox_group(1);
-    for (let i = 1; i < checkboxes.length; i++) {
-        if (withNewDesign.includes(i)) {
-            checkboxes[i].disabled = false;
-        }
-    }
-}
-
-function enable_new_futures() {
-    let checkboxes = get_checkbox_group(1);
-    for (let i = 1; i < checkboxes.length; i++) {
-        if (withNewFuture.includes(i)) {
-            checkboxes[i].disabled = false;
-        }
-    }
-}
-
-function enable_no_header() {
-    let checkboxes = get_checkbox_group(1);
-    for (let i = 1; i < checkboxes.length; i++) {
-        if (withNoHeader.includes(i)) {
-            checkboxes[i].disabled = false;
-        }
-    }
-}
-
-function uncheck_inactive() {
-    let checkboxes = get_checkbox_group(1);
-    for (let i = 1; i < checkboxes.length; i++) {
-        if (checkboxes[i].disabled) {
-            checkboxes[i].checked = false;
-        }
-    }
-}
-
 function handle_checkbox_change() {
-    var featureFlags = checkboxes_to_flags(get_checkbox_group(2));
+    const checkboxGroup1 = get_checkbox_group(1);
+    const checkboxGroup2 = get_checkbox_group(2);
+    const checkboxGroup3 = get_checkbox_group(3);
 
-    let useNewDesign = featureFlags[0];
-    let useNewFutures = featureFlags[1];
-    let useNoHeader = featureFlags[2];
+    const sectionFlags = checkboxes_to_flags(checkboxGroup1);
+    const featureFlags = checkboxes_to_flags(checkboxGroup2);
+    const contentFlags = checkboxes_to_flags(checkboxGroup3);
 
-    let checkboxes = get_checkbox_group(1);
+    const anySection = sectionFlags.some(e => e === 1);
+    const anyFeature = featureFlags.some(e => e === 1);
+    const anyContent = contentFlags.some(e => e === 1);
 
-    disable_all();
-    if (useNewDesign) {
-        enable_new_design();
+    if (!anySection) {
+        sectionFlags.forEach((f, i) => sectionFlags[i] = 1);
     }
-    if (useNewFutures) {
-        enable_new_futures();
+    if (!anyFeature) {
+        featureFlags.forEach((f, i) => featureFlags[i] = 1);
     }
-    if (useNoHeader) {
-        enable_no_header();
+    if (!anyContent) {
+        contentFlags.forEach((f, i) => contentFlags[i] = 1);
     }
 
-    uncheck_inactive();
+    sectionsData.forEach((section, index) => {
+        if (section.feature_flags.some((feature, i) => feature && featureFlags[i]) ||
+            section.content_flags.some((content, i) => content && contentFlags[i]) ||
+            sectionFlags[index]
+        ) {
+            section.dom_element.style.display = '';
+        } else {
+            section.dom_element.style.display = 'none';
+        }
+    });
 
-    var flags = checkboxes_to_flags(checkboxes);
-    var sections = get_all_sections();
-    for (var i = 0; i < sections.length; i++) {
-        sections[i].style.display = flags[i] ? '' : 'none';
-    }
+    // sectionsData.forEach((section, i) => {
+    //     section.dom_element.style.display = sectionFlags[i] ? '' : 'none';
+    // });
 }
 
 function get_checkbox_group(number) {
-    let checkboxes = extract_checkboxes(document.getElementById('checkbox-group-' + number).children);
+    const checkboxes = extract_checkboxes(document.getElementById('checkbox-group-' + number).children);
     return checkboxes;
 }
 
 function checkboxes_to_flags(checkboxes) {
-    let flags = [];
-    for (var i = 0; i < checkboxes.length; i++) {
+    const flags = [];
+    for (let i = 0; i < checkboxes.length; i++) {
         flags.push(checkboxes[i].checked);
     }
     return flags;
 }
 
 function get_all_sections() {
-    let sections = ['sec1', 'sec2', 'sec3', 'sec4', 'sec5', 'sec6', 'sec7', 'footer'];
-    for (var i = 0; i < sections.length; i++) {
-        sections[i] = document.getElementById(sections[i]);
-    }
-    return sections;
+    return sectionsData.map(section => section.dom_element);
 }
