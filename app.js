@@ -1,19 +1,21 @@
 function changeCSS(cssFile, cssLinkIndex) {
-    const oldlink = document.getElementsByTagName("link").item(cssLinkIndex);
+    const oldLink = document.getElementsByTagName("link").item(cssLinkIndex);
 
-    const newlink = document.createElement("link");
-    newlink.setAttribute("rel", "stylesheet");
-    newlink.setAttribute("type", "text/css");
-    newlink.setAttribute("href", cssFile);
+    const newLink = document.createElement("link");
+    newLink.setAttribute("rel", "stylesheet");
+    newLink.setAttribute("type", "text/css");
+    newLink.setAttribute("href", cssFile);
 
-    document.getElementsByTagName("head").item(0).replaceChild(newlink, oldlink);
+    document.getElementsByTagName("head").item(0).replaceChild(newLink, oldLink);
 }
+
+var withNewDesign = [1, 3];
+var withNewFuture = [2, 5, 6];
+var withNoHeader = [4, 7];
 
 window.onload = function () {
     setCheckboxVisibility('hidden');
-    $("section").hide();
-    $("footer").hide();
-    $("section:first").show();
+    handle_checkbox_change();
 };
 
 function setCheckboxVisibility(visibility) {
@@ -30,508 +32,104 @@ function show_checkboxes_click() {
 function hide_checkboxes_click() {
     setCheckboxVisibility('hidden');
 }
-///////////////////////////////////////////////////////////////////////////////////////////////////
 
-$(".ch input:checkbox").click(function () {
-
-
-    showed();
-
-    ShowBlock();
-
-});
-
-
-$(".ch2 input:checkbox").click(function () {
-
-    ShowHeaders();
-
-});
-
-$(".ch3 input:checkbox").click(function () {
-    ShowParams();
-
-});
-
-function ShowBlock() {
-    var temp = [];
-
-    $(".ch input:checked:not(:disabled)").each(function (z, it) {
-        temp.push($(it).attr("value"));
-    });
-
-    var temp2 = [];
-
-    $(".ch2 input:checked:not(:disabled)").each(function (z, it) {
-        temp2.push($(it).attr("value"));
-    });
-
-    var temp3 = [];
-
-    $(".ch3 input:checked:not(:disabled)").each(function (z, it) {
-        temp3.push($(it).attr("value"));
-    });
-
-    $('input[name = "headerss"]').prop("disabled", true);
-    // $('input[name = "block"]').prop("disabled", false);
-    $('input[name = "param"]').prop("disabled", true);
-
-
-    for (let item of temp) {
-        switch (item) {
-            case "block1":
-
-                $('input[value = "desigN"]').prop("disabled", false);
-                $('input[value = "param3"]').prop("disabled", false);
-
-                break;
-            case "block2":
-
-                $('input[value = "futurE"]').prop("disabled", false);
-
-                break;
-            case "block3":
-
-                $('input[value = "desigN"]').prop("disabled", false);
-                $('input[value = "param2"]').prop("disabled", false);
-                $('input[value = "param3"]').prop("disabled", false);
-
-                break;
-            case "block4":
-
-                $('input[value = "without"]').prop("disabled", false);
-
-                break;
-            case "block5":
-
-                $('input[value = "futurE"]').prop("disabled", false);
-                $('input[value = "param2"]').prop("disabled", false);
-                break;
-            case "block6":
-
-                $('input[value = "futurE"]').prop("disabled", false);
-                $('input[value = "param1"]').prop("disabled", false);
-                break;
-            case "block7":
-
-                $('input[value = "without"]').prop("disabled", false);
-                $('input[value = "param1"]').prop("disabled", false);
-                $('input[value = "param3"]').prop("disabled", false);
-
-
-        }
-
-
+function extract_checkboxes(labels) {
+    let checkboxes = [];
+    for (let i = 0; i < labels.length; i++) {
+        checkboxes.push(labels[i].children[0]);
     }
-
-
+    return checkboxes;
 }
 
-function ShowBlock2() {
-    var temp = [];
+function disable_all() {
+    let checkboxes = get_checkbox_group(1);
+    for (let i = 1; i < checkboxes.length; i++) {
+        checkboxes[i].disabled = true;
+    }
+}
 
-    $(".ch input:checked:not(:disabled)").each(function (z, it) {
-        temp.push($(it).attr("value"));
-    });
-
-    var temp2 = [];
-
-    $(".ch2 input:checked:not(:disabled)").each(function (z, it) {
-        temp2.push($(it).attr("value"));
-    });
-
-    var temp3 = [];
-
-    $(".ch3 input:checked:not(:disabled)").each(function (z, it) {
-        temp3.push($(it).attr("value"));
-    });
-
-    $('input[name = "headerss"]').prop("disabled", true);
-    $('input[name = "block"]').prop("disabled", false);
-    $('input[name = "param"]').prop("disabled", true);
-
-    for (let item of temp) {
-        switch (item) {
-            case "block1":
-                $('input[value = "desigN"]').prop("disabled", false);
-                $('input[value = "param3"]').prop("disabled", false);
-                break;
-            case "block2":
-                $('input[value = "futurE"]').prop("disabled", false);
-                break;
-            case "block3":
-                $('input[value = "desigN"]').prop("disabled", false);
-                $('input[value = "param2"]').prop("disabled", false);
-                $('input[value = "param3"]').prop("disabled", false);
-                break;
-            case "block4":
-                $('input[value = "without"]').prop("disabled", false);
-                break;
-            case "block5":
-                $('input[value = "futurE"]').prop("disabled", false);
-                $('input[value = "param2"]').prop("disabled", false);
-                break;
-            case "block6":
-                $('input[value = "futurE"]').prop("disabled", false);
-                $('input[value = "param1"]').prop("disabled", false);
-                break;
-            case "block7":
-
-                $('input[value = "without"]').prop("disabled", false);
-                $('input[value = "param1"]').prop("disabled", false);
-                $('input[value = "param3"]').prop("disabled", false);
-                break;
+function enable_new_design() {
+    let checkboxes = get_checkbox_group(1);
+    for (let i = 1; i < checkboxes.length; i++) {
+        if (withNewDesign.includes(i)) {
+            checkboxes[i].disabled = false;
         }
     }
 }
 
-
-function ShowHeaders() {
-    var temp = [];
-
-    $(".ch input:checked:not(:disabled)").each(function (z, it) {
-        temp.push($(it).attr("value"));
-    });
-
-    var temp2 = [];
-
-    $(".ch2 input:checked:not(:disabled)").each(function (z, it) {
-        temp2.push($(it).attr("value"));
-    });
-
-    var temp3 = [];
-
-    $(".ch3 input:checked:not(:disabled)").each(function (z, it) {
-        temp3.push($(it).attr("value"));
-    });
-
-    if (temp2.length === 0) {
-        //ShowBlock2();
-        //ShowParams();
-        return;
-    }
-
-
-    $('input[name = "block"]').prop("disabled", true);
-    // $('input[name = "headerss"]').prop("disabled", false);
-    $('input[name = "param"]').prop("disabled", true);
-
-    for (let item of temp2) {
-        switch (item) {
-            case "desigN":
-                $('input[value = "block1"]').prop("disabled", false);
-                $('input[value = "block3"]').prop("disabled", false);
-                if ($('input[value = "block1"]').checked) {
-                    $('input[value = "param2"]').prop("disabled", false);
-                }
-                $('input[value = "param3"]').prop("disabled", false);
-                break;
-            case "futurE":
-                $('input[value = "block2"]').prop("disabled", false);
-                $('input[value = "block5"]').prop("disabled", false);
-                $('input[value = "block6"]').prop("disabled", false);
-                $('input[value = "param2"]').prop("disabled", false);
-                $('input[value = "param1"]').prop("disabled", false);
-                break;
-            case "without":
-                $('input[value = "block4"]').prop("disabled", false);
-                $('input[value = "block7"]').prop("disabled", false);
-                $('input[value = "param1"]').prop("disabled", false);
-                break;
+function enable_new_futures() {
+    let checkboxes = get_checkbox_group(1);
+    for (let i = 1; i < checkboxes.length; i++) {
+        if (withNewFuture.includes(i)) {
+            checkboxes[i].disabled = false;
         }
     }
 }
 
-function ShowParams() {
-    var temp = [];
-
-    $(".ch input:checked:not(:disabled)").each(function (z, it) {
-        temp.push($(it).attr("value"));
-    });
-
-    var temp2 = [];
-
-    $(".ch2 input:checked:not(:disabled)").each(function (z, it) {
-        temp2.push($(it).attr("value"));
-    });
-
-    var temp3 = [];
-
-    $(".ch3 input:checked:not(:disabled)").each(function (z, it) {
-        temp3.push($(it).attr("value"));
-    });
-
-
-    $('input[name = "block"]').prop("disabled", true);
-    $('input[name = "headerss"]').prop("disabled", true);
-    // $('input[name = "param"]').prop("disabled", false);
-
-
-    for (let item of temp3) {
-        switch (item) {
-            case "param1":
-                $('input[value = "block6"]').prop("disabled", false);
-                $('input[value = "block7"]').prop("disabled", false);
-
-
-                $('input[value = "futurE"]').prop("disabled", false);
-
-                $('input[value = "without"]').prop("disabled", false);
-
-
-                break;
-            case "param2":
-
-                $('input[value = "block3"]').prop("disabled", false);
-                $('input[value = "block5"]').prop("disabled", false);
-
-
-                $('input[value = "desigN"]').prop("disabled", false);
-
-
-                $('input[value = "futurE"]').prop("disabled", false);
-
-
-                break;
-            case "param3":
-
-
-                $('input[value = "block1"]').prop("disabled", false);
-                $('input[value = "block3"]').prop("disabled", false);
-                $('input[value = "block7"]').prop("disabled", false);
-
-                $('input[value = "desigN"]').prop("disabled", false);
-                $('input[value = "without"]').prop("disabled", false);
-
-                break;
-
-
-        }
-
-
-    }
-}
-
-function ShowParams2() {
-    var temp = [];
-
-    $(".ch input:checked:not(:disabled)").each(function (z, it) {
-        temp.push($(it).attr("value"));
-    });
-
-    var temp2 = [];
-
-    $(".ch2 input:checked:not(:disabled)").each(function (z, it) {
-        temp2.push($(it).attr("value"));
-    });
-
-    var temp3 = [];
-
-    $(".ch3 input:checked:not(:disabled)").each(function (z, it) {
-        temp3.push($(it).attr("value"));
-    });
-
-
-    $('input[name = "block"]').prop("disabled", true);
-    $('input[name = "headerss"]').prop("disabled", true);
-    $('input[name = "param"]').prop("disabled", false);
-
-
-    for (let item of temp3) {
-        switch (item) {
-            case "param1":
-                $('input[value = "block6"]').prop("disabled", false);
-                $('input[value = "block7"]').prop("disabled", false);
-
-
-                $('input[value = "futurE"]').prop("disabled", false);
-
-                $('input[value = "without"]').prop("disabled", false);
-
-
-                break;
-            case "param2":
-
-                $('input[value = "block3"]').prop("disabled", false);
-                $('input[value = "block5"]').prop("disabled", false);
-
-
-                $('input[value = "desigN"]').prop("disabled", false);
-
-
-                $('input[value = "futurE"]').prop("disabled", false);
-
-
-                break;
-            case "param3":
-
-
-                $('input[value = "block1"]').prop("disabled", false);
-                $('input[value = "block3"]').prop("disabled", false);
-                $('input[value = "block7"]').prop("disabled", false);
-
-                $('input[value = "desigN"]').prop("disabled", false);
-                $('input[value = "without"]').prop("disabled", false);
-
-                break;
-
-
-        }
-
-
-    }
-}
-
-
-function showed() {
-    var temp2 = [];
-
-    $(".ch input:checked:disabled").each(function (j, ite) {
-        temp2.push($(ite).attr("value"));
-    });
-
-    var temp3 = [];
-
-    $(".ch input:checked:not(:disabled)").each(function (z, it) {
-        temp3.push($(it).attr("value"));
-    });
-
-
-    for (let item of temp2) {
-        switch (item) {
-            case "block1":
-                $(".sec2").hide();
-                break;
-            case "block2":
-                $(".sec3").hide();
-                break;
-            case "block3":
-                $(".sec4").hide();
-                break;
-            case "block4":
-                $(".sec5").hide();
-                break;
-            case "block5":
-                $(".sec6").hide();
-                break;
-            case "block6":
-                $(".sec7").hide();
-                break;
-            case "block7":
-                $(".footer").hide();
-                break;
-
-        }
-    }
-    for (let item of temp3) {
-        switch (item) {
-            case "block1":
-                $(".sec2").show();
-                break;
-            case "block2":
-                $(".sec3").show();
-                break;
-            case "block3":
-                $(".sec4").show();
-                break;
-            case "block4":
-                $(".sec5").show();
-                break;
-            case "block5":
-                $(".sec6").show();
-                break;
-            case "block6":
-                $(".sec7").show();
-                break;
-            case "block7":
-                $(".footer").show();
-                break;
-
+function enable_no_header() {
+    let checkboxes = get_checkbox_group(1);
+    for (let i = 1; i < checkboxes.length; i++) {
+        if (withNoHeader.includes(i)) {
+            checkboxes[i].disabled = false;
         }
     }
 }
 
-function showedHead() {
-
-    var temp4 = [];
-
-    $(".ch2 input:checked:not(:disabled)").each(function (z, it) {
-        temp4.push($(it).attr("value"));
-    });
-
-
-    $("section").hide();
-    $(".sec1").show();
-
-    for (let item of temp4) {
-        switch (item) {
-            case "desigN":
-
-                $(".sec2").show();
-                $(".sec4").show();
-
-                break;
-
-            case "futurE":
-
-                $(".sec3").show();
-                $(".sec6").show();
-                $(".sec7").show();
-
-                break;
-
-            case "without":
-
-                $(".sec5").show();
-
-                $(".footer").show();
-
-                break;
-
+function uncheck_inactive() {
+    let checkboxes = get_checkbox_group(1);
+    for (let i = 1; i < checkboxes.length; i++) {
+        if (checkboxes[i].disabled) {
+            checkboxes[i].checked = false;
         }
     }
-
-
 }
 
-function showedParam() {
+function handle_checkbox_change() {
+    var featureFlags = checkboxes_to_flags(get_checkbox_group(2));
 
-    var temp4 = [];
+    let useNewDesign = featureFlags[0];
+    let useNewFutures = featureFlags[1];
+    let useNoHeader = featureFlags[2];
 
-    $(".ch3 input:checked:not(:disabled)").each(function (z, it) {
-        temp4.push($(it).attr("value"));
-    });
+    let checkboxes = get_checkbox_group(1);
 
-
-    $("section").hide();
-    $(".sec1").show();
-
-    for (let item of temp4) {
-        switch (item) {
-            case "param1":
-
-                $(".sec7").show();
-                $(".footer").show();
-
-                break;
-
-            case "param2":
-
-                $(".sec4").show();
-                $(".sec6").show();
-
-                break;
-
-            case "param3":
-
-                $(".sec2").show();
-                $(".sec4").show();
-                $(".footer").show();
-
-                break;
-
-        }
+    disable_all();
+    if (useNewDesign) {
+        enable_new_design();
+    }
+    if (useNewFutures) {
+        enable_new_futures();
+    }
+    if (useNoHeader) {
+        enable_no_header();
     }
 
+    uncheck_inactive();
 
+    var flags = checkboxes_to_flags(checkboxes);
+    var sections = get_sections();
+    for (var i = 0; i < sections.length; i++) {
+        sections[i].style.display = flags[i] ? '' : 'none';
+    }
+}
+
+function get_checkbox_group(number) {
+    let checkboxes = extract_checkboxes(document.getElementById('checkbox-group-' + number).children);
+    return checkboxes;
+}
+
+function checkboxes_to_flags(checkboxes) {
+    let flags = [];
+    for (var i = 0; i < checkboxes.length; i++) {
+        flags.push(checkboxes[i].checked);
+    }
+    return flags;
+}
+
+function get_sections() {
+    let sections = ['sec1', 'sec2', 'sec3', 'sec4', 'sec5', 'sec6', 'sec7', 'footer'];
+    for (var i = 0; i < sections.length; i++) {
+        sections[i] = document.getElementById(sections[i]);
+    }
+    return sections;
 }
