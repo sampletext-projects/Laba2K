@@ -107,7 +107,7 @@ function handle_checkbox_change() {
     uncheck_inactive();
 
     var flags = checkboxes_to_flags(checkboxes);
-    var sections = get_sections();
+    var sections = get_all_sections();
     for (var i = 0; i < sections.length; i++) {
         sections[i].style.display = flags[i] ? '' : 'none';
     }
@@ -126,7 +126,7 @@ function checkboxes_to_flags(checkboxes) {
     return flags;
 }
 
-function get_sections() {
+function get_all_sections() {
     let sections = ['sec1', 'sec2', 'sec3', 'sec4', 'sec5', 'sec6', 'sec7', 'footer'];
     for (var i = 0; i < sections.length; i++) {
         sections[i] = document.getElementById(sections[i]);
