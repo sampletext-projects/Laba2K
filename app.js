@@ -13,8 +13,8 @@ var sectionsData = [
     {
         dom_id: 'sec1',
         dom_element: undefined,
-        feature_flags: [false, false, false],
-        content_flags: [false, false, false]
+        feature_flags: [true, true, true],
+        content_flags: [true, true, true]
     },
     {
         dom_id: 'sec2',
@@ -105,25 +105,90 @@ function handle_checkbox_change() {
     const featureFlags = checkboxes_to_flags(checkboxGroup2);
     const contentFlags = checkboxes_to_flags(checkboxGroup3);
 
-    const anySection = sectionFlags.some(e => e === 1);
-    const anyFeature = featureFlags.some(e => e === 1);
-    const anyContent = contentFlags.some(e => e === 1);
+    const anySection = sectionFlags.some(e => e === true);
+    const anyFeature = featureFlags.some(e => e === true);
+    const anyContent = contentFlags.some(e => e === true);
 
     if (!anySection) {
-        sectionFlags.forEach((f, i) => sectionFlags[i] = 1);
+        sectionFlags.forEach((f, i) => sectionFlags[i] = true);
     }
     if (!anyFeature) {
-        featureFlags.forEach((f, i) => featureFlags[i] = 1);
+        featureFlags.forEach((f, i) => featureFlags[i] = true);
     }
     if (!anyContent) {
-        contentFlags.forEach((f, i) => contentFlags[i] = 1);
+        contentFlags.forEach((f, i) => contentFlags[i] = true);
     }
 
+    let selectedSectionsFeatures = [false, false, false];
+    let selectedSectionsContents = [false, false, false];
+
     sectionsData.forEach((section, index) => {
-        if (section.feature_flags.some((feature, i) => feature && featureFlags[i]) ||
-            section.content_flags.some((content, i) => content && contentFlags[i]) ||
-            sectionFlags[index]
+        if (index === 0) return;
+        selectedSectionsFeatures[0] |= sectionFlags[index] ? section.feature_flags[0] : false;
+        selectedSectionsFeatures[1] |= sectionFlags[index] ? section.feature_flags[1] : false;
+        selectedSectionsFeatures[2] |= sectionFlags[index] ? section.feature_flags[2] : false;
+
+        selectedSectionsContents[0] |= sectionFlags[index] ? section.content_flags[0] : false;
+        selectedSectionsContents[1] |= sectionFlags[index] ? section.content_flags[1] : false;
+        selectedSectionsContents[2] |= sectionFlags[index] ? section.content_flags[2] : false;
+    });
+
+    selectedSectionsFeatures = selectedSectionsFeatures.map(f => !f);
+    selectedSectionsContents = selectedSectionsContents.map(f => !f);
+
+    checkboxGroup1.forEach((chb, index) => {
+        if ((sectionsData[index].feature_flags[0] === selectedSectionsFeatures[0] && selectedSectionsFeatures[0]) ||
+            (sectionsData[index].feature_flags[1] === selectedSectionsFeatures[1] && selectedSectionsFeatures[1]) ||
+            (sectionsData[index].feature_flags[2] === selectedSectionsFeatures[2] && selectedSectionsFeatures[2])) {
+            chb.disabled = false;
+        } else {
+            chb.disabled = true;
+        }
+    });
+
+    checkboxGroup2.forEach((chb, index) => {
+        if (selectedSectionsFeatures[index]) {
+            chb.disabled = false;
+        } else {
+            chb.disabled = true;
+        }
+    });
+
+    checkboxGroup3.forEach((chb, index) => {
+        if (selectedSectionsFeatures[index]) {
+            chb.disabled = false;
+        } else {
+            chb.disabled = true;
+        }
+    });
+
+    sectionsData.forEach((section, index) => {
+        section.is_active = false;
+
+        if ((section.feature_flags[0] && featureFlags[0]) ||
+            (section.feature_flags[1] && featureFlags[1]) ||
+            (section.feature_flags[2] && featureFlags[2])
         ) {
+            section.is_active = true;
+        }
+
+        if ((section.content_flags[0] && contentFlags[0]) ||
+            (section.content_flags[1] && contentFlags[1]) ||
+            (section.content_flags[2] && contentFlags[2])) {
+            section.is_active = true;
+        }
+
+        if (anySection && sectionFlags[index]) {
+            section.is_active = true;
+        }
+
+        if (index === 0) {
+            section.is_active = true;
+        }
+    });
+
+    sectionsData.forEach((section, index) => {
+        if (section.is_active) {
             section.dom_element.style.display = '';
         } else {
             section.dom_element.style.display = 'none';
